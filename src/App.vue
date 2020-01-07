@@ -7,7 +7,8 @@
     <router-view />
     <app-teams v-show="!selected" @toggled="isSelected"></app-teams>
     <app-teaminfo v-show="selected" v-bind:teamId='teamId'></app-teaminfo>
-    <button @click="isSelected">Back</button>
+          <button @click="isSelected">Back</button>
+
   </div>
 </template>
 

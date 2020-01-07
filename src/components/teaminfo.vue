@@ -16,22 +16,33 @@ export default {
       teamInfo: null,
     };
   },
-  mounted() {
-    axios({
-      method: 'GET',
-      // eslint-disable-next-line prefer-template
-      url: 'https://free-nba.p.rapidapi.com/teams/' + this.teamId,
-      headers: {
-        'content-type': 'application/octet-stream',
-        'x-rapidapi-host': 'free-nba.p.rapidapi.com',
-        'x-rapidapi-key': 'gfetYKeN6VyxYZCQbYCF4TLt88QQnSoc',
+  methods: {
+    teamCall() {
+      axios({
+        method: 'GET',
+        // eslint-disable-next-line prefer-template
+        url: 'https://free-nba.p.rapidapi.com/teams/' + this.teamId,
+        headers: {
+          'content-type': 'application/octet-stream',
+          'x-rapidapi-host': 'free-nba.p.rapidapi.com',
+          'x-rapidapi-key': 'gfetYKeN6VyxYZCQbYCF4TLt88QQnSoc',
+        },
+        params: {
+          page: '0',
+        },
+      }).then((response) => {
+        this.teamInfo = response.data;
+      });
+    },
+  },
+  watch: {
+    $props: {
+      handler() {
+        this.teamCall();
       },
-      params: {
-        page: '0',
-      },
-    }).then((response) => {
-      this.teamInfo = response.data;
-    });
+      deep: true,
+      immediate: true,
+    },
   },
 };
 </script>
