@@ -1,27 +1,23 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <app-header></app-header>
     <app-teams v-show="!selected" @toggled="isSelected"></app-teams>
     <app-teaminfo v-show="selected" v-bind:teamId='teamId'></app-teaminfo>
-          <button @click="isSelected">Back</button>
-
+    <button @click="isSelected">Back</button>
   </div>
 </template>
 
 <script>
 import teams from './components/teams.vue';
 import teaminfo from './components/teaminfo.vue';
+import header from './components/header.vue';
 
 export default {
   name: 'app',
   data() {
     return {
       selected: false,
-      teamId: 1,
+      teamId: 0,
     };
   },
   methods: {
@@ -34,6 +30,7 @@ export default {
   components: {
     appTeams: teams,
     appTeaminfo: teaminfo,
+    appHeader: header,
   },
 };
 </script>
@@ -60,5 +57,9 @@ export default {
 }
 ul {
   list-style-type: none;
+}
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+body {
+  padding-top: 3.5rem;
 }
 </style>

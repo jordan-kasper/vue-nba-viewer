@@ -1,9 +1,14 @@
 <template>
-  <div>
+  <div class="container">
     <ul>
+      <div class="row">
       <li v-for="post of posts.data" v-bind:key="post.id">
-        <p @click="teamSelected(post.id)">{{ post.full_name }}</p>
+        <div class="logo">
+          <img :src="'../images/' + post.id + '.png'"
+          @click="teamSelected(post.id)" width="150px" height="150px" padding>
+        </div>
       </li>
+      </div>
     </ul>
   </div>
 </template>
@@ -42,3 +47,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+</style>
