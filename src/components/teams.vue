@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <ul>
+        <ul>
       <div class="row">
-      <li v-for="post of posts.data" v-bind:key="post.id">
+      <li v-for="post of posts.api.teams" v-bind:key="post.id">
         <div class="logo">
-          <img :src="'../images/' + post.id + '.png'"
-          @click="teamSelected(post.id)" width="150px" height="150px" padding>
+          <img :src="'../images/' + post.teamId + '.png'"
+          @click="teamSelected(post.teamId)" width="150px" height="150px" padding>
         </div>
       </li>
       </div>
@@ -27,10 +27,10 @@ export default {
   mounted() {
     axios({
       method: 'GET',
-      url: 'https://free-nba.p.rapidapi.com/teams',
+      url: 'https://api-nba-v1.p.rapidapi.com/teams/league/standard',
       headers: {
         'content-type': 'application/octet-stream',
-        'x-rapidapi-host': 'free-nba.p.rapidapi.com',
+        'x-rapidapi-host': 'api-nba-v1.p.rapidapi.com',
         'x-rapidapi-key': 'gfetYKeN6VyxYZCQbYCF4TLt88QQnSoc',
       },
       params: {
