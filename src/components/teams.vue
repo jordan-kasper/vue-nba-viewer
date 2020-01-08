@@ -2,10 +2,12 @@
   <div class="container">
         <ul>
       <div class="row">
-      <li v-for="post of posts.api.teams" v-bind:key="post.id">
-        <div class="logo">
+      <li v-for="post of posts" v-bind:key="post.id">
+        <div v-if="post.leagues.standard.confName == 'East' ||
+        post.leagues.standard.confName == 'West'">
           <img :src="'../images/' + post.teamId + '.png'"
           @click="teamSelected(post.teamId)" width="150px" height="150px" padding>
+          <p>{{post.shortName}}</p>
         </div>
       </li>
       </div>
@@ -37,7 +39,7 @@ export default {
         page: '0',
       },
     }).then((response) => {
-      this.posts = response.data;
+      this.posts = response.data.api.teams;
     });
   },
   methods: {
