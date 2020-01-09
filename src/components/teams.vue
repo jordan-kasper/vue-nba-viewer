@@ -5,9 +5,18 @@
       <li v-for="post of posts" v-bind:key="post.id">
         <div v-if="post.leagues.standard.confName == 'East' ||
         post.leagues.standard.confName == 'West'">
-          <img :src="'../images/' + post.teamId + '.png'"
-          @click="teamSelected(post.teamId)" width="150px" height="150px" padding>
+        <div v-if="post.logo !== ''">
+          <img :src="post.logo"
+          @click="teamSelected(post.teamId)" width="160px" height="160px"
+          style="margin-right:11px; margin-left:11px; margin-top:50px; margin-bottom:20px">
           <p>{{post.shortName}}</p>
+        </div>
+        <div v-else>
+          <img src="../assets/images/noimage.png"
+          @click="teamSelected(post.teamId)" width="160px" height="160px"
+          style="margin-right:11px; margin-left:11px; margin-top:50px; margin-bottom:20px">
+          <p>{{post.shortName}}</p>
+        </div>
         </div>
       </li>
       </div>

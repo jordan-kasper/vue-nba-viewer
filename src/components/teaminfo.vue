@@ -3,10 +3,10 @@
     <div v-for="team in teamInfo" v-bind:key="team.id">
       <div class="py-5 text-center">
         <img
-          :src="'../images/' + teamId+ '.png'"
+          :src="team.logo"
           width="150px"
           height="150px"
-          padding
+          style = "margin-bottom:30px"
         />
         <h2>{{ team.fullName }}</h2>
         <p class="lead">
@@ -31,10 +31,13 @@
         </div>
         <div class="col-md-8 order-md-1">
           <h4>2019 - 2020 Roster</h4>
-          <ul v-for="player in players" v-bind:key="player.id">
-            <li v-if="player.leagues.standard != null && player.leagues.standard.active == 1">
-              {{ player.firstName }} {{ player.lastName }} {{ player.leagues.standard }}</li>
-          </ul>
+          <span v-for="player in players" v-bind:key="player.id">
+            <span v-if="player.leagues.standard != null && player.leagues.standard.active == 1">
+                <img :src="'https://nba-players.herokuapp.com/players/' + player.lastName" width="150px" height="120px"
+                style="padding-right: 20px; padding-top: 20px"
+                :title="player.firstName + ' ' +player.lastName">
+            </span>
+          </span>
         </div>
       </div>
     </div>

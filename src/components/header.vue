@@ -9,12 +9,6 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"><router-link to="/">Home</router-link></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><router-link to="/about">About</router-link></a>
-      </li>
     </ul>
   </div>
 </nav>

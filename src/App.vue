@@ -2,8 +2,10 @@
   <div id="app">
     <app-header></app-header>
     <app-teams v-show="!selected" @toggled="isSelected"></app-teams>
-    <app-teaminfo v-show="selected" v-bind:teamId='teamId'></app-teaminfo>
+    <app-teaminfo v-show="myteam" v-bind:teamId='teamId'></app-teaminfo>
+    <app-playerinfo v-show="selected" v-bind:teamId='teamId'></app-playerinfo>
     <button @click="isSelected">Back</button>
+
   </div>
 </template>
 
@@ -11,6 +13,7 @@
 import teams from './components/teams.vue';
 import teaminfo from './components/teaminfo.vue';
 import header from './components/header.vue';
+import playerinfo from './components/playerinfo.vue';
 
 export default {
   name: 'app',
@@ -31,6 +34,7 @@ export default {
     appTeams: teams,
     appTeaminfo: teaminfo,
     appHeader: header,
+    appPlayerinfo: playerinfo,
   },
 };
 </script>
