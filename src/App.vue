@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <app-header></app-header>
-    <app-teams v-show="!selected" @toggled="isSelected"></app-teams>
-    <app-teaminfo v-show="myteam" v-bind:teamId='teamId'></app-teaminfo>
-    <app-playerinfo v-show="selected" v-bind:teamId='teamId'></app-playerinfo>
-    <button @click="isSelected">Back</button>
+    <app-teams v-show="teams" @toggled="teamSelected"></app-teams>
+    <app-teaminfo v-show="teamSelect" v-bind:teamId='teamId' @playerPick="PlayerPicked">
+    </app-teaminfo>
+    <app-playerinfo v-show="playerSelect" v-bind:teamId='teamId'></app-playerinfo>
+
+    <button v-show="teamSelect" @click="teamSelected">Back to Teams</button>
+    <button v-show="playerSelect" @click="playerSelected">Back to Team</button>
 
   </div>
 </template>
@@ -19,14 +22,29 @@ export default {
   name: 'app',
   data() {
     return {
-      selected: false,
+      teams: true,
+      teamSelect: false,
+      playerSelect: false,
       teamId: 0,
+      playerName: '',
     };
   },
   methods: {
-    isSelected(id) {
+    playerSelected() {
+      this.teamSelect = !this.teamSelect;
+      this.playerSelect = !this.playerSelect;
+      this.$forceUpdate();
+    },
+    teamSelected(id) {
       this.teamId = id;
-      this.selected = !this.selected;
+      this.teams = !this.teams;
+      this.teamSelect = !this.teamSelect;
+      this.$forceUpdate();
+    },
+    PlayerPicked(name) {
+      this.playerName = name;
+      this.teamSelect = !this.teamSelect;
+      this.playerSelect = !this.playerSelect;
       this.$forceUpdate();
     },
   },

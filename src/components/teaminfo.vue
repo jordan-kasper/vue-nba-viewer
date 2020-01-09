@@ -34,6 +34,7 @@
           <span v-for="player in players" v-bind:key="player.id">
             <span v-if="player.leagues.standard != null && player.leagues.standard.active == 1">
                 <img :src="'https://nba-players.herokuapp.com/players/' + player.lastName" width="150px" height="120px"
+                @click="PlayerSelected(player.lastName)"
                 style="padding-right: 20px; padding-top: 20px"
                 :title="player.firstName + ' ' +player.lastName">
             </span>
@@ -91,6 +92,9 @@ export default {
       }).then((response) => {
         this.players = response.data.api.players;
       });
+    },
+    PlayerSelected(name) {
+      this.$emit('playerPick', (name));
     },
   },
   watch: {
